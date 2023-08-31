@@ -35,7 +35,11 @@ class TodoService {
     async markTaskComplete(taskId) {
         const todo = await TodoModel.findOne({ 'tasks._id': taskId });
         const taskToUpdate = todo.tasks.find(task => task._id.toString() === taskId);
-        taskToUpdate.isCompleted = true;
+        if (taskToUpdate.isCompleted) {
+            taskToUpdate.isCompleted = false;
+        } else {
+            taskToUpdate.isCompleted = true;
+        }
         await todo.save();
         return todo;
     }

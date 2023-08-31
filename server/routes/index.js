@@ -11,7 +11,7 @@ router.post('/api/logout', authMiddleware, authController.logout);
 // CRUD
 router.post('/api/create', authMiddleware, todoController.createTodo);
 router.get('/api/getTodos', authMiddleware, todoController.getAllTodo);
-router.delete('/api/deleteTask', authMiddleware, todoController.deleteTask)
+router.post('/api/deleteTask', authMiddleware, todoController.deleteTask)
 router.delete('/api/deleteTodo/:todoId', authMiddleware, todoController.deleteTodo)
 router.get('/api/markComplete/:taskId', authMiddleware, todoController.markTaskComplete)
 

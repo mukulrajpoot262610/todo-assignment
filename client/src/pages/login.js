@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { login } from '../services/api'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { setAuth } from "../redux/authSlice";
@@ -49,6 +49,10 @@ const Login = () => {
                         <button className='btn w-full mt-4' type='submit'>Login</button>
                     </div>
                 </form>
+
+                <Link to="/register">
+                    <h1 className='text-sm mt-4 hover:underline'>Register Now</h1>
+                </Link>
             </div>
         </div>
     )

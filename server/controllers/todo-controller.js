@@ -21,7 +21,8 @@ class TodoController {
                 todo = await TodoService.createTodo({ name, tasks, user });
             }
 
-            return APIResponse.successResponseWithData(res, todo);
+            const todos = await TodoService.getAllTodo({ user });
+            return APIResponse.successResponseWithData(res, todos);
 
         } catch (error) {
             console.log(error);
@@ -44,10 +45,12 @@ class TodoController {
 
     async deleteTask(req, res) {
         const { name, taskId } = req.body;
+        const { _id: user } = req.user;
 
         try {
-            const todo = await TodoService.deleteTasksFromTodo(name, taskId);
-            return APIResponse.successResponseWithData(res, todo);
+            await TodoService.deleteTasksFromTodo(name, taskId);
+            const todos = await TodoService.getAllTodo({ user });
+            return APIResponse.successResponseWithData(res, todos);
         } catch (error) {
             console.log(error);
             return APIResponse.errorResponse(res);
@@ -69,10 +72,12 @@ class TodoController {
 
     async markTaskComplete(req, res) {
         const { taskId } = req.params;
+        const { _id: user } = req.user;
 
         try {
-            const todo = await TodoService.markTaskComplete(taskId);
-            return APIResponse.successResponseWithData(res, todo);
+            await TodoService.markTaskComplete(taskId);
+            const todos = await TodoService.getAllTodo({ user });
+            return APIResponse.successResponseWithData(res, todos);
         } catch (error) {
             console.log(error);
             return APIResponse.errorResponse(res);

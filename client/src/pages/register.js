@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../services/api';
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../redux/authSlice';
@@ -56,6 +56,10 @@ const Register = () => {
                         <button className='btn w-full mt-4'>Register</button>
                     </div>
                 </form>
+
+                <Link to="/">
+                    <h1 className='text-sm mt-4 hover:underline'>Login Now</h1>
+                </Link>
             </div>
         </div>
     )
